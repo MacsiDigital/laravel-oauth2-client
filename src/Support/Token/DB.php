@@ -9,7 +9,7 @@ class DB extends Base
 
 	public function __construct($integration)
 	{
-		$this->model = Integration::where('name', $integration);
+		$this->model = Integration::where('name', $integration)->firstOrNew();
 		$this->set($this->model);
 		return $this;
 	}

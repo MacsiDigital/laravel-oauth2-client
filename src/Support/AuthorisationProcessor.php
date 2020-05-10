@@ -4,14 +4,15 @@ namespace MacsiDigital\OAuth2\Support;
 
 class AuthorisationProcessor
 {
-	public function __invoke($accessToken)
+	public function __construct($accessToken, $integration)
     {
-    	$token = $config['tokenStore'];
-        return (new $token([
+    	$config = config($integration);
+    	$token = $config['tokenModel'];
+        return (new $token($integration))->set([
         	'accessToken' => $accessToken->getToken(),
         	'refreshToken' => $accessToken->getRefreshToken(),
         	'expires' => $accessToken->getExpires()
-        ]))->save();
+        ])->save();
     }
 
 }

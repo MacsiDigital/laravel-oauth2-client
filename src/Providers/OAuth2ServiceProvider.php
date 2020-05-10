@@ -25,8 +25,8 @@ class OAuth2ServiceProvider extends ServiceProvider
     public function register()
     {
         // Register the main class to use with the facade
-        $this->app->bind('oauth2.provider', 'MacsiDigital\OAuth2\Contracts\Provider');
+        $this->app->bind('oauth2.connection', 'MacsiDigital\OAuth2\Contracts\Connection');
 
-        $this->app->bind('MacsiDigital\OAuth2\Contracts\Provider', 'MacsiDigital\OAuth2\Provider');
+        $this->app->bind('MacsiDigital\OAuth2\Contracts\Connection', 'MacsiDigital\OAuth2\Connection');
     }
 }

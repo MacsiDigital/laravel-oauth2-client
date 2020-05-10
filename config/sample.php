@@ -2,11 +2,14 @@
 
 return [
 	'oauth2' => [
-		'client_id' => '',
-		'client_secret' => '',
+		'clientId' => '',
+		'clientSecret' => '',
+	],
+	'options' => [
+		'scope' => ['openid email profile offline_access accounting.settings accounting.transactions accounting.contacts accounting.journals.read accounting.reports.read accounting.attachments']
 	],
 	'tokenProcessor' => '\MacsiDigital\OAuth2\Support\AuthorisationProcessor',
-	'tokenStore' => '\MacsiDigital\OAuth2\Support\FileToken',
+	'tokenModel' => '\MacsiDigital\OAuth2\Support\FileToken',
 	'authorisedRedirect' => '',
-	'failedRedirect' => '', 
+	'failedRedirect' => '',
 ];

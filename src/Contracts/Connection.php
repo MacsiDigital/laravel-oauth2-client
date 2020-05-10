@@ -2,7 +2,7 @@
 
 namespace MacsiDigital\OAuth2\Contracts;
 
-interface Provider
+interface Connection
 {
 
 

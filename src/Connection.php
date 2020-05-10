@@ -2,20 +2,27 @@
 namespace MacsiDigital\OAuth2;
 
 use MacsiDigital\OAuth2\Traits\ForwardsCalls;
-use \League\OAuth2\Client\Provider\GenericProvider;
-use MacsiDigital\OAuth2\Contracts\Provider as ProviderContract;
+use MacsiDigital\OAuth2\Support\Providers\GenericProvider;
+use MacsiDigital\OAuth2\Contracts\Connection as ConnectionContract;
 
-class Provider implements ProviderContract
+class Connection implements ConnectionContract
 {
 	use ForwardsCalls;
 
     protected $provider;
 	protected $options;
 
+    public function authenticated($integration) 
+    {
+        $config = config($integration);
+        $token = new $config['tokenModel']($integration);
+        return $token->authenticated();
+    }
+
 	public function withOptions($options)
 	{
         $this->options = $options;
-    //    $this->provider = new GenericProvider($options);
+        $this->provider = new GenericProvider($options);
         return $this;
 	}
 
@@ -28,10 +35,6 @@ class Provider implements ProviderContract
      */
     public function __call($method, $parameters)
     {
-        if (in_array($method, ['increment', 'decrement'])) {
-            return $this->$method(...$parameters);
-        }
-        
         return $this->forwardCallTo($this->provider, $method, $parameters);
     }
 

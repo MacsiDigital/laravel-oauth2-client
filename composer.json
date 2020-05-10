@@ -1,11 +1,11 @@
 {
-    "name": "macsidigital/laravel-api-client",
+    "name": "macsidigital/laravel-oauth2-client",
     "description": "Laravel OAuth2 Client",
     "keywords": [
         "macsidigital",
         "laravel-oauth2-client"
     ],
-    "homepage": "https://github.com/macsidigital/laravel-oauth2",
+    "homepage": "https://github.com/macsidigital/laravel-oauth2-client",
     "license": "MIT",
     "type": "library",
     "authors": [

@@ -1,6 +1,7 @@
 <?php
 namespace MacsiDigital\OAuth2\Support\Token;
 
+use Illuminate\Support\Facades\Storage;
 use MacsiDigital\OAuth2\Support\Token\Base;
 
 class File extends Base
@@ -9,7 +10,11 @@ class File extends Base
 
 	public function __construct($integration)
 	{
-		$config = include('/storage/app/oauth2/'.$integration);
+		if(Storage::disk('local')->exists('oauth2/'.$integration.'.php')){
+			$config = include(storage_path('app/oauth2/').$integration.'.php');
+		} else {
+			$config = [];
+		}
 		$this->set($config);
 		$this->integration = $integration;
 		$this->disk = Storage::disk('local');
@@ -21,14 +26,14 @@ class File extends Base
 		if(!$this->disk->exists('oauth2')){
 			$this->disk->makeDirectory('oauth2');
 		}
-		$this->disk('local')->put('/oauth2/'.$integration.'.php', $this->generateContent());
+		$this->disk->put('/oauth2/'.$this->integration.'.php', $this->generateContent());
 		return $this;
 	}
 
 	public function generateContent()
 	{
 		return "<?php 
-		[
+		return [
 			'accessToken' => '".$this->accessToken."',
 			'refreshToken' => '".$this->refreshToken."',
 			'expires' => '".$this->expires."',

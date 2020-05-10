@@ -1,7 +1,8 @@
 <?php
 namespace MacsiDigital\OAuth2\Support\Token;
 
-use MacsiDigital\Contracts\OAuth2\Token;
+use MacsiDigital\OAuth2\Contracts\Token;
+use MacsiDigital\OAuth2\Facades\Connection;
 
 abstract class Base implements Token
 {
@@ -27,7 +28,7 @@ abstract class Base implements Token
 
 	public function accessToken() 
 	{
-		return $this->accessToken();
+		return $this->accessToken;
 	}
 
 	public function setRefreshToken($token)
@@ -38,7 +39,7 @@ abstract class Base implements Token
 
 	public function refreshToken() 
 	{
-		return $this->refreshToken();
+		return $this->refreshToken;
 	}
 
 	public function setExpires($timeStamp)
@@ -49,12 +50,30 @@ abstract class Base implements Token
 
 	public function expires() 
 	{
-		return $this->expires();
+		return $this->expires;
 	}
 
 	public function hasExpired() 
 	{
 		return time() > $this->expires;
+	}
+
+	public function authenticated() 
+	{
+		return $this->accessToken != null;
+	}
+
+	public function renewToken() 
+	{
+		if($this->hasExpired()){
+			$config = config($this->integration);
+			$provider = Connection::withOptions(array_merge(['redirectUri' => route('oauth2.callback', ['integration' => $this->integration])], $config['oauth2']));
+			$accessToken = $provider->getAccessToken('refresh_token', [
+		        'refresh_token' => $this->refreshToken()
+		    ]);
+			$this->set($accessToken)->save();
+		}
+		return $this;
 	}
 
 }
