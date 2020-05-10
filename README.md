@@ -62,7 +62,13 @@ You also need to check the credential requirements for the oauth2 server and add
 
 ## Authorising & the AuthorisationProcessor
 
-Their are routes pre defined to connect to the Oauth2 server and if all setup is done correctly we should be linking the account in no time.
+Their are routes pre defined to connect to the Oauth2 server, the named routes are 'oauth2.authorise' & 'oauth2.callback' and both need passing in the integration.  So for xero:-
+
+``` php
+route('oauth2.authorise', ['integration' => 'xero']); // will return /oauth2/xero/authorise
+```
+
+If its a simple straight forward Server then and if all setup is done correctly we should be linking the account in no time.
 
 However some API's will have custom processing requirements, for example Xero needs a tenant id.
 
