@@ -23,6 +23,11 @@ class Integration implements Model
         'accessToken', 'refreshToken', 'expires', 'additional',
     ];
 
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array
+     */
     protected $casts = [
         'additional' => 'array',
     ];
