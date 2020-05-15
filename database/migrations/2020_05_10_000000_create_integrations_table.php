@@ -20,6 +20,7 @@ class CreateIntegrationsTable extends Migration
             $table->string('refresh_token');
             $table->dateTime('expires');
             $table->json('additional')->nullable();
+            $table->timestamps();
         });
     }
 

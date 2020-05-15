@@ -12,6 +12,13 @@ class Connection implements ConnectionContract
     protected $provider;
 	protected $options;
 
+    /**
+     * Return if the OAuth2 implementation is authenticated.
+     *
+     * @param  string  $integration
+     * @return boolean
+     *
+     */
     public function authenticated($integration) 
     {
         $config = config($integration);
@@ -19,6 +26,13 @@ class Connection implements ConnectionContract
         return $token->authenticated();
     }
 
+    /**
+     * Set connection options.
+     *
+     * @param  array  $options
+     * @return self
+     *
+     */
 	public function withOptions($options)
 	{
         $this->options = $options;
@@ -27,7 +41,7 @@ class Connection implements ConnectionContract
 	}
 
     /**
-     * Handle dynamic method calls into the model.
+     * Handle dynamic method calls into the model. Forward calls to the provider
      *
      * @param  string  $method
      * @param  array  $parameters
