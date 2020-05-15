@@ -13,8 +13,7 @@ class OAuth2Validation extends FormRequest
      */
     public function authorize()
     {
-        session(['oauth2state' => $this->state]);
-        return $this->state == session('oauth2state');
+        return $this->state == $this->cookie('oauth2state');
     }
 
     /**

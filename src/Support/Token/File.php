@@ -30,6 +30,11 @@ class File extends Base
 		return $this;
 	}
 
+	public function delete()
+	{
+		$this->disk->delete('/oauth2/'.$this->integration.'.php');
+	}
+
 	public function generateContent()
 	{
 		return "<?php 

@@ -8,9 +8,9 @@ use Illuminate\Support\Str;
 
 $factory->define(Integration::class, function (Faker $faker) {
     return [
-    	'accessToken' => '',
-        'refreshToken' => '',
-        'expires' => '',
+    	'accessToken' => Str::random('100'),
+        'refreshToken' => Str::random('20'),
+        'expires' => Str::random('10'),
         'additional' => '',
     ];
 });
