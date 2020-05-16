@@ -71,9 +71,18 @@ abstract class Base implements Token
 			$accessToken = $provider->getAccessToken('refresh_token', [
 		        'refresh_token' => $this->refreshToken()
 		    ]);
-			$this->set($accessToken)->save();
+			$this->updateAccessToken($accessToken);
 		}
 		return $this;
+	}
+
+	public function updateAccessToken($accessToken){
+		$this->set([
+        	'accessToken' => $accessToken->getToken(),
+        	'refreshToken' => $accessToken->getRefreshToken(),
+        	'expires' => $accessToken->getExpires(),
+        ])->save();
+        return $this;
 	}
 
 }
