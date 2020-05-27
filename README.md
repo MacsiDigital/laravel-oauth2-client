@@ -160,7 +160,8 @@ If you discover any security related issues, please email colin@macsi.co.uk inst
 
 ## Credits
 
-- [Colin Hall](https://github.com/macsidigital)
+- [MacsiDigital](https://github.com/macsidigital)
+- [Colin Hall](https://github.com/colinhall17)
 - [All Contributors](../../contributors)
 
 ## License

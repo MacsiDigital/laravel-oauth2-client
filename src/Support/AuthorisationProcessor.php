@@ -8,11 +8,7 @@ class AuthorisationProcessor
     {
     	$config = config($integration);
     	$token = $config['tokenModel'];
-        return (new $token($integration))->set([
-        	'accessToken' => $accessToken->getToken(),
-        	'refreshToken' => $accessToken->getRefreshToken(),
-        	'expires' => $accessToken->getExpires()
-        ])->save();
+        return (new $token($integration))->updateAccessToken($accessToken);
     }
 
 }
