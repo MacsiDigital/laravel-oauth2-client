@@ -6,7 +6,7 @@ use Illuminate\Support\ServiceProvider;
 
 class OAuth2ServiceProvider extends ServiceProvider
 {
-	public function boot()
+    public function boot()
     {
         $this->loadRoutesFrom(__DIR__.'/../../routes/web.php');
 

@@ -2,47 +2,47 @@
 namespace MacsiDigital\OAuth2\Support\Token;
 
 use Illuminate\Support\Facades\Storage;
-use MacsiDigital\OAuth2\Support\Token\Base;
 
 class File extends Base
 {
-	protected $disk;
+    protected $disk;
 
-	public function __construct($integration)
-	{
-		if(Storage::disk('local')->exists('oauth2/'.$integration.'.php')){
-			$config = include(storage_path('app/oauth2/').$integration.'.php');
-		} else {
-			$config = [];
-		}
-		$this->set($config);
-		$this->integration = $integration;
-		$this->disk = Storage::disk('local');
-		return $this;
-	}
+    public function __construct($integration)
+    {
+        if (Storage::disk('local')->exists('oauth2/'.$integration.'.php')) {
+            $config = include(storage_path('app/oauth2/').$integration.'.php');
+        } else {
+            $config = [];
+        }
+        $this->set($config);
+        $this->integration = $integration;
+        $this->disk = Storage::disk('local');
 
-	public function save() 
-	{
-		if(!$this->disk->exists('oauth2')){
-			$this->disk->makeDirectory('oauth2');
-		}
-		$this->disk->put('/oauth2/'.$this->integration.'.php', $this->generateContent());
-		return $this;
-	}
+        return $this;
+    }
 
-	public function delete()
-	{
-		$this->disk->delete('/oauth2/'.$this->integration.'.php');
-	}
+    public function save()
+    {
+        if (! $this->disk->exists('oauth2')) {
+            $this->disk->makeDirectory('oauth2');
+        }
+        $this->disk->put('/oauth2/'.$this->integration.'.php', $this->generateContent());
 
-	public function generateContent()
-	{
-		return "<?php 
+        return $this;
+    }
+
+    public function delete()
+    {
+        $this->disk->delete('/oauth2/'.$this->integration.'.php');
+    }
+
+    public function generateContent()
+    {
+        return "<?php 
 		return [
 			'accessToken' => '".$this->accessToken."',
 			'refreshToken' => '".$this->refreshToken."',
 			'expires' => '".$this->expires."',
 		];";
-	}
-
+    }
 }

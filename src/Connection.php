@@ -1,28 +1,29 @@
 <?php
 namespace MacsiDigital\OAuth2;
 
-use MacsiDigital\OAuth2\Traits\ForwardsCalls;
-use MacsiDigital\OAuth2\Support\Providers\GenericProvider;
 use MacsiDigital\OAuth2\Contracts\Connection as ConnectionContract;
+use MacsiDigital\OAuth2\Support\Providers\GenericProvider;
+use MacsiDigital\OAuth2\Traits\ForwardsCalls;
 
 class Connection implements ConnectionContract
 {
-	use ForwardsCalls;
+    use ForwardsCalls;
 
     protected $provider;
-	protected $options;
+    protected $options;
 
     /**
      * Return if the OAuth2 implementation is authenticated.
      *
      * @param  string  $integration
-     * @return boolean
+     * @return bool
      *
      */
-    public function authenticated($integration) 
+    public function authenticated($integration)
     {
         $config = config($integration);
         $token = new $config['tokenModel']($integration);
+
         return $token->authenticated();
     }
 
@@ -33,12 +34,13 @@ class Connection implements ConnectionContract
      * @return self
      *
      */
-	public function withOptions($options)
-	{
+    public function withOptions($options)
+    {
         $this->options = $options;
         $this->provider = new GenericProvider($options);
+
         return $this;
-	}
+    }
 
     /**
      * Handle dynamic method calls into the model. Forward calls to the provider
@@ -51,5 +53,4 @@ class Connection implements ConnectionContract
     {
         return $this->forwardCallTo($this->provider, $method, $parameters);
     }
-
 }

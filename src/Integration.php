@@ -5,13 +5,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Integration implements Model
 {
-	/**
+    /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'accessToken', 'refreshToken', 'expires', 'additional'
+        'name', 'accessToken', 'refreshToken', 'expires', 'additional',
     ];
 
     /**
@@ -31,7 +31,4 @@ class Integration implements Model
     protected $casts = [
         'additional' => 'array',
     ];
-
-    
-    
 }

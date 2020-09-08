@@ -6,5 +6,4 @@ use \League\OAuth2\Client\Provider\Exception\IdentityProviderException as League
 
 class IdentityProviderException extends LeagueException
 {
-	
 }
