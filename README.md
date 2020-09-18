@@ -5,7 +5,7 @@
 ![Header Image](https://github.com/MacsiDigital/repo-design/raw/master/laravel-oauth2-client/header.png)
 
 <p align="center">
- <a href="https://github.com/MacsiDigital/laravel-oauth2-client/actions?query=workflow%3Atests"><img src="https://github.com/MacsiDigital/laravel-oauth2-client/workflows/Run%20tests/badge.svg" style="max-width:100%;"  alt="tests badge"></a>
+ <a href="https://github.com/MacsiDigital/laravel-oauth2-client/actions?query=workflow%3ATests"><img src="https://github.com/MacsiDigital/laravel-oauth2-client/workflows/Tests/badge.svg" style="max-width:100%;"  alt="tests badge"></a>
  <a href="https://packagist.org/packages/macsidigital/laravel-oauth2-client"><img src="https://img.shields.io/packagist/v/macsidigital/laravel-oauth2-client.svg?style=flat-square" alt="version badge"/></a>
  <a href="https://packagist.org/packages/macsidigital/laravel-oauth2-client"><img src="https://img.shields.io/packagist/dt/macsidigital/laravel-oauth2-client.svg?style=flat-square" alt="downloads badge"/></a>
 </p>
@@ -181,11 +181,11 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
 ## Security
 
-If you discover any security-related issues, please email [info@macsi.co.uk](mailto:info@masi.co.uk) instead of using the issue tracker.
+If you discover any security-related issues, please email [info@macsi.co.uk](mailto:info@macsi.co.uk) instead of using the issue tracker.
 
 ## Credits
 
-- [Colin Hall](https://github.com/ColinHall)
+- [Colin Hall](https://github.com/colinhall17)
 - [MacsiDigital](https://github.com/MacsiDigital)
 - [All Contributors](../../contributors)
 
