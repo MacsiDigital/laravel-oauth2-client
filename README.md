@@ -24,6 +24,10 @@ You can install the package via composer:
 composer require macsidigital/laravel-oauth2-client
 ```
 
+## Package helper
+
+The package helper can be used to return the package version
+
 ## Usage
 
 The main aim of this library is to handle the authentication requirements of OAuth2.  Then you should have a token which you can use in an API client.
