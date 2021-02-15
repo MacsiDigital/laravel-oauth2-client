@@ -44,7 +44,7 @@ class AuthorisationController extends BaseController
             throw new AlreadyAuthenticatedException($integration);
         }
 
-        // If not then to prcess the token and save the access token
+        // If not then to process the token and save the access token
         $config = config($integration);
         if ($config == []) {
             throw new ConfigDoesntExistException($integration);
