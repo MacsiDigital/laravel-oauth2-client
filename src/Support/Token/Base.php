@@ -58,7 +58,7 @@ abstract class Base implements Token
 
     public function hasExpired()
     {
-        return time() > $this->expires;
+        return time() + 60 > $this->expires;
     }
 
     public function authenticated()
