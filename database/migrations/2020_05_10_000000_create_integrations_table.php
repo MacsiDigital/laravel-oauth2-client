@@ -13,7 +13,7 @@ class CreateIntegrationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('integrations', function (Blueprint $table) {
+        Schema::create(config('oauth2.table_name'), function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('access_token');
@@ -31,6 +31,6 @@ class CreateIntegrationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('integrations');
+        Schema::dropIfExists(config('oauth2.table_name'));
     }
 }

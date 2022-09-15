@@ -31,4 +31,9 @@ class Integration implements Model
     protected $casts = [
         'additional' => 'array',
     ];
+
+    public function getTable()
+    {
+        return config('oauth2.table_name', parent::getTable());
+    }
 }

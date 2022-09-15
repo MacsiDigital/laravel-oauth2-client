@@ -38,9 +38,20 @@ There are Token Drivers for both File and Database.
 
 The file driver will save a file in storage/app/oauth2, which will keep the token details required to communicate with the OAuth2 Server.
 
+
 ### Database
 
-If using DB you will need to publish migrations.
+#### Config
+
+If you want to use the DB driver and would like to customise teh table name then you can publish the config file and amend the table_name column
+
+``` bash
+php artisan vendor:publish --provider="MacsiDigital\OAuth2\Providers\OAuth2ServiceProvider" --tag="integration-config"
+```
+
+#### Migrations
+
+If using DB driver you will need to publish migrations.
 
 ``` bash
 php artisan vendor:publish --provider="MacsiDigital\OAuth2\Providers\OAuth2ServiceProvider" --tag="integration-migrations"
@@ -52,7 +63,9 @@ Then you will need to run migrations
 php artisan migrate
 ```
 
-The majority of the setup can be found in the config file
+### Integration Configuration
+
+The majority of the setup can be found in the config file, which needs to be copied and placed in the laravel config directory
 
 ``` php
 return [
@@ -64,11 +77,13 @@ return [
 		'scope' => ['openid email profile offline_access accounting.settings accounting.transactions accounting.contacts accounting.journals.read accounting.reports.read accounting.attachments']
 	],
 	'tokenProcessor' => '\MacsiDigital\OAuth2\Support\AuthorisationProcessor',
-	'tokenModel' => '\MacsiDigital\OAuth2\Support\FileToken',
+	'tokenModel' => '\MacsiDigital\OAuth2\Support\Token\File',
 	'authorisedRedirect' => '',
 	'failedRedirect' => '',
 ];
 ```
+
+(Todo: Create a command to automatically publish the config file) 
 
 As the primary focus of the library is in packages, this needs to be loaded into laravel with an integration name through a service provider. So for xero:-
 
@@ -171,9 +186,9 @@ composer test
 ## ToDo
 
 - Tests
-- SOme proper documentation
+- Some proper documentation
 
-Basically we are just defining how we can authorise nad communicate with the API. For more details on what this means check the documentation for laravel-api-client.
+Basically we are just defining how we can authorise and communicate with the API. For more details on what this means check the documentation for laravel-api-client.
 
 ## Changelog
 

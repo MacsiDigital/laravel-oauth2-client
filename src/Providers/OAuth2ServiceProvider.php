@@ -14,6 +14,10 @@ class OAuth2ServiceProvider extends ServiceProvider
             $this->publishes([
               __DIR__ . '/../../database/migrations' => database_path('migrations/'),
             ], 'integration-migrations');
+
+            $this->publishes([
+                __DIR__.'/../../config/oauth2.php' => config_path('oauth2.php'),
+            ], 'integration-config');
         }
     }
 
@@ -25,7 +29,7 @@ class OAuth2ServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->bind('oauth2', 'MacsiDigital\OAuth2\Package');
-        
+
         // Register the main class to use with the facade
         $this->app->bind('oauth2.connection', 'MacsiDigital\OAuth2\Contracts\Connection');
 
