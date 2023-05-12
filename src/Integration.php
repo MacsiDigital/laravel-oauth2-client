@@ -3,7 +3,7 @@ namespace MacsiDigital\OAuth2;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Integration implements Model
+class Integration extends Model
 {
     /**
      * The attributes that are mass assignable.
